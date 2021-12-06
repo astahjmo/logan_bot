@@ -10,7 +10,6 @@ module.exports = {
     .setAuthor("Painel de ajuda",client.user.displayAvatarURL())
     .setDescription("`+mclear `**|** `+mjoin `**|** `+mleave `**|** `+mloop`**|** `+mmove`**|** `+mnowplaying`**|** `+mpause`**|** `+mplay`**|** `+mqueue`**|** `+mremove`**|** `+mresume`**|** `+msearch`**|** `+mskip`**|** `+mseek`**|** `+mstop`**|** `+mvolume`**|** `+mradio`**|** `+m247`")
     .setFooter("Feito por Sr.Luzifer")
-    console.log(embed)
     message.channel.send( { embeds: [embed] } )
   }
 }
