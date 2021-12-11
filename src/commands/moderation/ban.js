@@ -4,6 +4,6 @@ module.exports = {
     permissions: ["BAN_MEMBERS"],
 
     run: async (client,message,args) => {
-        console.log(this.permissions)
+        console.log("baniu")
     }
 }
