@@ -4,7 +4,7 @@ const {MessageActionRow} = require('discord.js')
 
 
 module.exports = {
-    name: "teste",
+    name: "help",
     run: async (client,message,args) =>{
         helper_command = {}
         client.commands.forEach(element => {
@@ -24,7 +24,6 @@ module.exports = {
         })
 
         main_panel = helper.mainPanel()
-        //console.log(commands_panel)
         let wor = new MessageActionRow().addComponents([...button_list])
         const message_panel = await message.reply({embeds: [main_panel], ephemeral: true ,components: [wor]})
         const collector = message_panel.createMessageComponentCollector({time:15000})
@@ -33,7 +32,7 @@ module.exports = {
             if(i.user.id != message.author.id) return
             const group = i.customId.slice(3)
             commands_panel = helper.commandsPanel(helper_command[group])
-            await i.update({content: "A", embeds: [commands_panel]})
+            await i.update({embeds: [commands_panel]})
             console.log(client.commands)
         })
     }

@@ -2,9 +2,10 @@ const {prefix} = require("../config.json")
 
 module.exports = {
     name: "messageCreate",
-    async execute(client,message) {
+    async execute(client,message) { 
         if (message.author.bot) return;
         if (!message.guild) return;
+        if (!message.content.startsWith(prefix)) return
         let args = message.content.split(" ")
         args.slice(1,args.length)
         const cmd = args.shift().toLowerCase().replace(prefix, "")
