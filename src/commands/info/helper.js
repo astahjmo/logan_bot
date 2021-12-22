@@ -2,9 +2,9 @@ const {HelperButton} = require('../../utils/buttons_constructor')
 const helper = require('../../utils/embed_constructor')
 const {MessageActionRow} = require('discord.js')
 
-
 module.exports = {
     name: "help",
+    working: false,
     run: async (client,message,args) =>{
         helper_command = {}
         client.commands.forEach(element => {
@@ -26,14 +26,18 @@ module.exports = {
         main_panel = helper.mainPanel()
         let wor = new MessageActionRow().addComponents([...button_list])
         const message_panel = await message.reply({embeds: [main_panel], ephemeral: true ,components: [wor]})
-        const collector = message_panel.createMessageComponentCollector({time:15000})
-        //console.log(collector)
+        const collector = message_panel.createMessageComponentCollector({time:30000})
         collector.on('collect', async i =>{
             if(i.user.id != message.author.id) return
             const group = i.customId.slice(3)
             commands_panel = helper.commandsPanel(helper_command[group])
             await i.update({embeds: [commands_panel]})
-            console.log(client.commands)
+        })
+
+        console.log(collector.message)
+
+        collector.on('end', async i =>{
+            await message_panel.edit({content: "Esse painel de ajuda acabou.", embeds: [], components: []})
         })
     }
 }

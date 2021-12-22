@@ -1,4 +1,5 @@
 const { readdirSync } = require("fs");
+
 module.exports = (client) => {
   const eventFiles = readdirSync("./src/events/").filter((file) => file.endsWith(".js")
   );
@@ -9,9 +10,6 @@ module.exports = (client) => {
       throw new TypeError(
         `[ERROR]: (${file})`
       );
-    }
-    if (!event.name) { 
-      throw new TypeError(`[ERROR]: (${file})`);
     }
     client.on(event.name, event.execute.bind(null, client));
 
