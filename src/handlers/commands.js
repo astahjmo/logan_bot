@@ -20,11 +20,14 @@ module.exports = (client, Discord) => {
             }
         }
     }
-    readCommands('commands');
+    readCommands('commands')
     for(const file of fileArray) {
         const command = require(`../${file}`);
-        if(command.name + "a") {
-            client.commands.set(command.name, command);
+        if(command.name) {
+            let group = file.split("/")
+            command.group = group[1]
+            client.commands.set(command.name, command, command.group);
+            console.log(`Carregando o comando: ${command.name}`)
         }       
     }
 };
