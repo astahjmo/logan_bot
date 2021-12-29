@@ -6,7 +6,8 @@ const { token } = require("./config.json")
 client.commands = new Collection()
 
 path = ["events", "commands"]
-
+require("./handlers/process")
+require("./server")
 path.forEach(handler => {
   require(`./handlers/${handler}`)(client);
 });
