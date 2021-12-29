@@ -11,7 +11,7 @@ module.exports = {
         message.delete()
 
         const embed = new Discord.MessageEmbed()
-        .setAuthor(`Sugestão de: ${message.author.username}`,message.guild.iconURL())
+        .setAuthor({name: `Sugestão de: ${message.author.username}`, iconURL: message.guild.iconURL()})
         .setColor("00fff7")
         .setThumbnail(message.author.avatarURL())
         .setDescription(`> **${args}**`)

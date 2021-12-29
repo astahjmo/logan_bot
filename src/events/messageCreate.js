@@ -1,8 +1,15 @@
 const {prefix} = require("../config.json")
-
+const { normalPanel } = require("../utils/embed_constructor.js")
 module.exports = {
     name: "messageCreate",
-    async execute(client,message) { 
+    async execute(client,message) {
+        
+        function userPermssionException(message){
+            this.message = message;
+            this.nome = "userPermissionException";
+        }
+
+
         if (message.author.bot) return;
         if (!message.guild) return;
         if (!message.content.startsWith(prefix)) return
@@ -13,12 +20,23 @@ module.exports = {
         if (cmd.length == 0) return;
         let command = client.commands.get(cmd);
         if (!command) return;
+
         if (command.working != true) return message.reply("Este comando está desativado para manuntenção.")
         try{
+            command.permissions.forEach(element => {
+                if(message.member.permissions.has(element)){
+                }else{
+                    throw new Error("userPermissionException")
+                }
+            });
             teste = command.run(client,message,args);
-            
-        }catch(e){
-            console.log(e)
+        }catch(UserPermissionException){
+            embed = normalPanel('#f80000', "Algo de errado não está certo!", `${message.author} você não tem permissão para execução deste comando`, "")
+            await message.reply({embeds: [embed]}).then(msg =>{
+                setTimeout(function(){
+                    msg.delete()
+                }, 5000)
+            })
         }
     }
 }

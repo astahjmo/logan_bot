@@ -4,7 +4,9 @@ const {MessageActionRow} = require('discord.js')
 
 module.exports = {
     name: "help",
-    working: false,
+    working: true,
+    description: "Mostra todos os comandos do bot",
+    permissions: [],
     run: async (client,message,args) =>{
         helper_command = {}
         client.commands.forEach(element => {
@@ -16,7 +18,6 @@ module.exports = {
             }
         })
         const list_groups = Object.keys(helper_command)
-        console.log(list_groups)
         let button_list = []
         list_groups.forEach(name => {
             const button = new HelperButton(`id_${name}`, name, "SECONDARY").create()
@@ -33,8 +34,6 @@ module.exports = {
             commands_panel = helper.commandsPanel(helper_command[group])
             await i.update({embeds: [commands_panel]})
         })
-
-        console.log(collector.message)
 
         collector.on('end', async i =>{
             await message_panel.edit({content: "Esse painel de ajuda acabou.", embeds: [], components: []})

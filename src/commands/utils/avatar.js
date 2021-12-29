@@ -3,6 +3,8 @@ const Discord = require("discord.js")
 module.exports = {
     name: "avatar",
     description: "Pegue o avatar seu ou de alguém",
+    working: true,
+    permissions: [],
     run: async (client, message, args) => {
 
             message.delete();

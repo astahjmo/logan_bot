@@ -1,28 +1,28 @@
 const { normalPanel } = require('../../utils/embed_constructor.js');
+const {prefix} = require('../../config.json');
 
 module.exports = {
-    name: "ban",
-    description: "Punir todos aqueles que não segue as regras",
-    permissions: ["BAN_MEMBERS"],
+    name: "mute",
+    description: "Mute todos aqueles que não segue as regras",
+    permissions: ["MODERATE_MEMBERS"],
     working: true,
     run: async (client,message,args) => {
         if(!message.guild.me.permissions.has("BAN_MEMBERS")){return}
-        if(args.length != 1){ return await message.reply("Você precisa especificar o usuário que você quer punir.")}
+        if(args.length != 2){ return await message.reply(`O comando correto é: ${prefix}mute "<@usuario>|<id>" <tempo>`)}
         let user = message.mentions.members.first();
         if(!user){
             user = await message.guild.members.fetch(args[0]);
         }
         if(!user){return await message.reply("Eu não consegui encontrar esse usuário, tente mencionar ou digitar o ID dele.")}
-        if(user.id == message.author.id){return await message.reply("Você não pode banir a si mesmo, estupido!")}
-        if(user.user.bot == true ){return await message.reply("Não bane meu irmão, ele é um bot!")}
+        if(user.id == message.author.id){return await message.reply("Você não pode mutar a si mesmo, estupido!")}
+        if(user.user.bot == true ){return await message.reply("Porque mutar um bot ?")}
         if(user.roles.highest.position >= message.guild.me.roles.highest.position){return await message.reply("Você não pode punir esse usuário, ele tem um cargo maior ou igual ao meu!")}
         if(user.roles.highest.position >= message.member.roles.highest.position){return await message.reply("Você não pode punir esse usuário, ele tem um cargo maior ou igual ao seu!")}
-        let reason = args.slice(1).join(" ");
-        if(!reason){ reason = "Não especificado"}
+        if(args[1] > "8640"){return await message.reply("O tempo máximo é de 8640 minutos!")}
        
         try {
-            user.ban().then((user) => {
-                embed = normalPanel('#f80000', "Usuário punido com sucesso!", `${user} foi punido por ${message.author} por: ${reason}`, "")
+            user.timeout(args[1] * 50 * 1000).then((user) => {
+                embed = normalPanel('#f80000', "Usuário punido com sucesso!", `${user} foi punido por ${message.author}`, "")
                 message.channel.send({ embeds: [embed]} ).then(msg => {
                     setTimeout(function(){
                         msg.delete()

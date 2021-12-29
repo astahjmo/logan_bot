@@ -4,17 +4,7 @@ module.exports = {
     name: "ready",
     once: true,
     async execute(client) {
-      //let channel = client.channels.cache.get("902330008155070495")
-      //channel.join()
-      let canal = client.channels.cache.get("902326610055823430")
-            const acordei = new Discord.MessageEmbed()
-            .setTitle(`> Made by Sr.Luzifer`)
-            .setDescription(` Inciciando novamente !!!`)
-             .setTimestamp()
-            .setColor('PURPLE')
-            setStatus();
-            setInterval(() => setStatus(), 5000)
-            canal.send({embeds: [acordei]})
+      console.log("Estou on")
 
             function setStatus() { 
               var tabela = [ 

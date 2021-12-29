@@ -2,3 +2,4 @@
 yarn.lock
 config.json
 /src/node_modules/
+package-lock.json

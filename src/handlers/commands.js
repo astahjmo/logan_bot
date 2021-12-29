@@ -8,18 +8,14 @@ module.exports = (client, Discord) => {
 
     function readCommands(dir) {
         const __dirname = rootDir;
-        console.log(`dirname: ${dir}`)
         const files = fs.readdirSync(path.join(__dirname, dir));
-        console.log(`files: ${files}`)
         for (const file of files) {
             const stat = fs.lstatSync(path.join(__dirname, dir, file));
             if (stat.isDirectory()) {
                 readCommands(path.join(dir, file));
-                console.log(stat.isDirectory())
             }
             else {
                 const fileDir = dir.replace('\\', '/');
-                console.log(fileDir)
                 fileArray.push(fileDir + '/' + file);
             }
         }
