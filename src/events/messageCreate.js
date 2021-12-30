@@ -8,7 +8,8 @@ module.exports = {
             this.message = message;
             this.nome = "userPermissionException";
         }
-        if(!message.member.permissions.has("MODERATE_MEMBERS")) return;
+        console.log(message)
+        if(!message.member.permissions.has("MANAGE_MESSAGES")) return;
         if (message.author.bot) return;
         if (!message.guild) return;
         if (!message.content.startsWith(prefix)) return
