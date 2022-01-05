@@ -1,5 +1,6 @@
 /old_src
 yarn.lock
 config.json
-/src/node_modules/
+node_modules/
+.vscode
 package-lock.json

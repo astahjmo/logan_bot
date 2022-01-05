@@ -8,14 +8,13 @@ module.exports = {
             this.message = message;
             this.nome = "userPermissionException";
         }
-        console.log(message)
-        if(!message.member.permissions.has("MANAGE_MESSAGES")) return;
         if (message.author.bot) return;
+        if(!message.member.permissions.has("MANAGE_MESSAGES")) return;
         if (!message.guild) return;
         if (!message.content.startsWith(prefix)) return
         let args = message.content.split(" ")
         args.slice(1,args.length)
-        const cmd = args.shift().toLowerCase().replace(prefix, "")
+        const cmd = args.shift().toLowerCase().replace(prefix, "") //
 
         if (cmd.length == 0) return;
         let command = client.commands.get(cmd);
@@ -26,7 +25,7 @@ module.exports = {
             command.permissions.forEach(element => {
                 if(message.member.permissions.has(element)){
                 }else{
-                    throw new Error("userPermissionException")
+                    throw new userPermssionException(`Você não tem permissão para executar este comando.`)
                 }
             });
             teste = command.run(client,message,args);
