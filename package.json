@@ -1,11 +1,11 @@
 {
   "name": "loganbot",
   "version": "1.0.0",
-  "main": "teste.js",
+  "main": "index.js",
   "dependencies": {
     "discord.js": "^13.4.0",
     "express": "^4.17.2",
-    "knex": "^0.95.15",
+    "sequelize": "^6.12.5",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {

@@ -5,7 +5,7 @@ module.exports = {
     name: "unmute",
     description: "Desmute todos aqueles que seguem as regras",
     permissions: ["MODERATE_MEMBERS"],
-    working: true,
+    working: false,
     run: async (client,message,args) => {
         if(!message.guild.me.permissions.has("BAN_MEMBERS")){return}
         if(args.length != 1){ return await message.reply(`O comando correto é: ${prefix}mute "<@usuario>|<id>" <tempo>`)}

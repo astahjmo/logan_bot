@@ -4,7 +4,7 @@ module.exports = {
     name: "kick",
     description: "Expulse todos aqueles que quebrem as regras",
     permissions: ["BAN_MEMBERS"],
-    working: true,
+    working: false,
     run: async (client,message,args) => {
         if(!message.guild.me.permissions.has("BAN_MEMBERS")){return}
         if(args.length != 1){ return await message.reply("Você precisa especificar o usuário que você quer punir.")}
