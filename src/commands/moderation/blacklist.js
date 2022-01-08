@@ -65,9 +65,9 @@ module.exports = {
                 "Blacklist",
                 `Ese é um comando usado para gerenciar links da blacklist\n 
                 **Modos de uso:**\n 
-                **Adicionar:** \`${prefix}${this.name} <${Object.keys(acceptedArgs)[0]}> <link>\`
-                **Remover:** \`${prefix}${this.name} <${Object.keys(acceptedArgs)[1]}> <link>\`
-                **Listar:** \`${prefix}${this.name} <${Object.keys(acceptedArgs)[2]}>\``,
+                **Adicionar:** \`${process.env.prefix}${this.name} <${Object.keys(acceptedArgs)[0]}> <link>\`
+                **Remover:** \`${process.env.prefix}${this.name} <${Object.keys(acceptedArgs)[1]}> <link>\`
+                **Listar:** \`${process.env.prefix}${this.name} <${Object.keys(acceptedArgs)[2]}>\``,
                 "logan é gay"
             )
             await message.channel.send({ embeds: [embed] })

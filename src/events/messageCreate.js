@@ -1,4 +1,3 @@
-const {prefix} = require("../config.json")
 const { normalPanel } = require("../utils/embed_constructor.js")
 module.exports = {
     name: "messageCreate",
@@ -11,10 +10,10 @@ module.exports = {
         if (message.author.bot) return;
         if(!message.member.permissions.has("MANAGE_MESSAGES")) return;
         if (!message.guild) return;
-        if (!message.content.startsWith(prefix)) return
+        if (!message.content.startsWith(process.env.prefix)) return
         let args = message.content.split(" ")
         args.slice(1,args.length)
-        const cmd = args.shift().toLowerCase().replace(prefix, "") //
+        const cmd = args.shift().toLowerCase().replace(process.env.prefix, "") //
 
         if (cmd.length == 0) return;
         let command = client.commands.get(cmd);
